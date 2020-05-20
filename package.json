@@ -1,7 +1,7 @@
 {
   "name": "echocommunity",
   "version": "0.0.2",
-  "description": "Echo 的 社区小程序",
+  "description": "Echo 的 小程序",
   "main": "weapp/app.js",
   "scripts": {
     "dev": "./node_modules/.bin/wepy build --watch",
@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@wepy/core": "^2.0.0-alpha.16",
+    "@wepy/use-promisify": "^2.0.6",
     "@wepy/x": "^2.0.2",
     "miniprogram-slide-view": "0.0.3",
     "wxml-to-canvas": "^1.1.1"
