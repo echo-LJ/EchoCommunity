@@ -38,7 +38,10 @@ page {
 <script>
 import wepy from '@wepy/core';
 import promisify from '@wepy/use-promisify';
+import Vuex from '@wepy/x';
+
 wepy.use(promisify);
+wepy.use(Vuex);
 
 wepy.app({
   globalData: {
