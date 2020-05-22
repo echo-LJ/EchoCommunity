@@ -107,7 +107,10 @@ wepy.page({
           url: '/pages/home'
         });
       } else {
-        this.btntext = '重试';
+        wx.switchTab({
+          url: '/pages/home'
+        });
+        // this.btntext = '重试';
       }
       this.loading = false;
       this.disabled = false;

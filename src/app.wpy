@@ -57,14 +57,41 @@ wepy.app({
 <config>
 {
     pages: [
-      'pages/index'
+      'pages/index',
+      'pages/home',
     ],
     debug: true,
+    tabBar: {
+      color: '#13100e',
+      selectedColor: '#13100e',
+      backgroundColor: '#ffffff',
+      borderStyle: 'white',
+      list: [
+				{
+          pagePath: 'pages/home',
+          text: '读书',
+          iconPath: 'static/images/ic_community_line.png',
+          selectedIconPath: 'static/images/ic_community_full.png'
+        }, 
+        {
+          pagePath: 'pages/home',
+          text: '消息',
+          iconPath: 'static/images/ic_notice_line.png',
+          selectedIconPath: 'static/images/ic_notice_full.png'
+        },
+        {
+          pagePath: 'pages/home',
+          text: '我的',
+          iconPath: 'static/images/ic_me_line.png',
+          selectedIconPath: 'static/images/ic_me_full.png'
+        }
+      ]
+    },
     window: {
       backgroundTextStyle: 'dark',
       navigationBarBackgroundColor: '#f8f8f8',
       backgroundColor: '#f8f8f8',
-      navigationBarTitleText: '玉帛书',
+      navigationBarTitleText: 'Echo',
       navigationBarTextStyle: 'black'
     }
 }

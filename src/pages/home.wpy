@@ -1,0 +1,115 @@
+<style lang="less" scoped>
+.my-tabs {
+  border-radius: 0rpx;
+  text-align: left;
+  .tab {
+    font-size: 28rpx;
+    &.active {
+      font-size: 34rpx;
+    }
+  }
+}
+</style>
+<template>
+  <div class="container">
+    <navigation-bar :back="false" background="transparent">
+      <div slot="left">
+        <tabs extClass="my-tabs" :labels="labels" :selectedIndex="tabIndex" @change="onTabChange" />
+      </div>
+    </navigation-bar>
+  </div>
+</template>
+<script>
+import wepy from '@wepy/core';
+import { Post, imgUrl, appUpdate } from '../common/api';
+wepy.page({
+  // mixins: [Share],
+  data: {
+    labels: [
+      {
+        title: '历史',
+        showDot: false
+      },
+      {
+        title: '人文',
+        showDot: false
+      },
+      {
+        title: '美术',
+        showDot: false
+      },
+      {
+        title: '新建',
+        showDot: false
+      },
+      {
+        title: '四大名著',
+        showDot: false
+      }
+    ],
+    init0: false,
+    init1: false,
+    init2: true,
+    init3: false,
+    init4: false,
+    init5: false,
+    init6: false,
+    current: 2,
+    tabIndex: 2,
+    triggered: true,
+    emptyBtnTxt: null,
+    navigationHeight: 0
+  },
+  onLoad() {
+    const { sysMsgCount, noticeCount } = Post.getUser();
+    if (noticeCount || sysMsgCount) {
+      wx.setTabBarBadge({
+        index: 1,
+        text:`${sysMsgCount + noticeCount}`
+      });
+    }
+    appUpdate()
+    this.navigationHeight = this.$app.$options.navigationHeight();
+    if (this.$app.$options.globalData.postId) {
+      wx.navigateTo({
+        url: '/pages/post-details?id=' + this.$app.$options.globalData.postId
+      });
+    }
+    if (this.$app.$options.globalData.commentId) {
+      wx.navigateTo({
+        url: '/pages/post-comment?id=' + this.$app.$options.globalData.commentId
+      });
+    }
+    this.emptyBtnTxt = Post.getSchool() ? null : '选择学校'
+  },
+  methods: {
+    onTabChange(index) {
+      this.current = index;
+    },
+    onChange(res) {
+      const { current, source } = res.$wx.detail;
+      this.tabIndex = current;
+      this.current = current;
+        if (!this[`init${current}`]) {
+          this[`init${current}`] = true;
+        }
+    },
+    onEmptyTap() {
+      wx.navigateTo({
+        url: `/pages/user-seting`
+      });
+    }
+  }
+});
+</script>
+<config>
+{
+    navigationBarTitleText: 'Echo',
+    navigationStyle: 'custom',
+    usingComponents: {
+      "tabs": "../components/tab-bar",
+      "navigation-bar": "../components/navigation-bar/navigation-bar",
+      
+    }
+}
+</config>
