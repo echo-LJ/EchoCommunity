@@ -39,10 +39,6 @@ wepy.page({
         showDot: false
       },
       {
-        title: '新建',
-        showDot: false
-      },
-      {
         title: '四大名著',
         showDot: false
       }
